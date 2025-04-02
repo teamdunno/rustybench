@@ -2,3 +2,13 @@
 name = "rustybench"
 version = "0.1.0"
 edition = "2024"
+
+[dependencies]
+
+[[bin]]
+name = "dhry"
+path = "src/dhry.rs"
+
+[[bin]]
+name = "arithoh"
+path = "src/arith.rs"
