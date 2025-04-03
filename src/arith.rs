@@ -1,4 +1,5 @@
 use std::i128;
+use std::io::Write;
 use std::time::{Duration, Instant};
 use std::env::args;
 
@@ -40,9 +41,14 @@ fn main() {
     }
     let duration: i128 = arguments[arguments.len() -1 as u64 as usize].parse::<i128>().unwrap();
     let runs: i128 = arithoh(duration);
-    println!("COUNT|{}|1|lps", runs);
+    eprintln!("COUNT|{}|1|lps", runs); // print to stderr for compatibility
+    std::io::stderr().flush().unwrap();
 }
 
 pub fn rustybench() -> i128 {
-    arithoh(10.into()) // default val from ubench
+    if cfg!(debug_assertions) {
+        arithoh(1.into())
+    } else {
+        arithoh(10.into()) // default val from ubench
+    }
 }

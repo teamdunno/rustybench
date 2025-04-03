@@ -2,8 +2,13 @@
 name = "rustybench"
 version = "0.1.0"
 edition = "2024"
+default-run = "rustybench"
 
 [dependencies]
+gethostname = "1.0.1"
+num_cpus = "1.16.0"
+sysinfo = "0.34.2"
+tabled = "0.18.0"
 
 [[bin]]
 name = "dhry"

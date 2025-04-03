@@ -2,6 +2,7 @@
 
 use std::time::{Duration, Instant};
 use std::env::args;
+use std::io::Write;
 
 #[derive(Clone, Copy, PartialEq)]
 enum Enumeration {
@@ -141,7 +142,7 @@ pub fn dhry(secs: i128) -> i128 {
         let _ = int1_loc + int2_loc + int3_loc; // to make rustc shut up about unused assignments
     }
 
-    runs
+    runs / 10
 }
 
 #[allow(dead_code)]
@@ -154,9 +155,14 @@ fn main() {
     }
     let duration: i128 = arguments[arguments.len() - 1 as i128 as usize].parse::<i128>().unwrap();
     let runs: i128 = dhry(duration);
-    println!("COUNT|{}|1|lps", runs)
+    eprint!("COUNT|{}|1|lps\n", runs); // print to stderr for compatibility
+    std::io::stderr().flush().unwrap();
 }
 
 pub fn rustybench() -> i128 {
-    dhry(10.into()) // default val from ubench
+    if cfg!(debug_assertions) {
+        dhry(1.into())
+    } else {
+        dhry(10.into()) // default val from ubench
+    }
 }
