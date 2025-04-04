@@ -166,3 +166,13 @@ pub fn rustybench() -> i128 {
         dhry(10.into()) // default val from ubench
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_dhry() {
+        let runs = dhry(1.into());
+        assert!(runs > 1);
+    }
+}

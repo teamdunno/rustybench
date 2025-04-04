@@ -52,3 +52,13 @@ pub fn rustybench() -> i128 {
         arithoh(10.into()) // default val from ubench
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_arithoh() {
+        let runs = arithoh(1.into());
+        assert!(runs > 1);
+    }
+}
